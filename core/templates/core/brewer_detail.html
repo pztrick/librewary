@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+
+{% block heading %}
+	Brewer Profile: {{ object }}
+{% endblock heading %}
+
+{% block content %}
+		<ul>
+			{% comment %}
+				<li>Username: {{ object.username }}
+			{% endcomment %}
+			<li>Full Name: {{ object.full_name }}
+			<li>Email: {% if object.show_email %}{{ object.email }}{% else %}<i>hidden</i>{% endif %}
+			<li>Facebook Profile: {% if object.show_facebook %}{{ object.facebook_link|safe }}{% else %}<i>hidden</i>{% endif %}
+			<li>Age: {{ object.age }}
+		</ul>
+
+		<br>
+
+		<div id="ulinline">
+			{% if user.is_authenticated %}
+				
+			<ul><strong>Actions:</strong>
+				<li><a href="{% url "brewer-equipment" object.id %}">View Equipment</a>
+				{% if user != object %}	
+					<li>{{ object.facebook_link|safe }}
+					<li>{{ object.email_link|safe }}
+				{% elif user == object %}
+					<li>
+					<a href="{% url "toggle-show-facebook" object.id %}">
+					{% if not object.show_facebook %}
+						Show Facebook
+					{% else %}
+						Hide Facebook
+					{% endif %}
+					</a>
+					<li>
+					<a href="{% url "toggle-show-email" object.id %}">
+					{% if not object.show_email %}
+						Show Email
+					{% else %}
+						Hide Email
+					{% endif %}
+					</a>
+				{% endif %}
+				</ul>
+			{% else %}
+				<ul><strong>You must be logged in before you can contact this brewer.</strong></ul>
+			{% endif %}
+		</div>
+{% endblock content %}

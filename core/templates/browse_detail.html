@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	{{ object.name }}
+{% endblock heading %}
+
+{% block content %}
+	 {{ object.description }}
+
+	<h3>Branch Inventory</h3>
+
+	{% if user.is_authenticated %}
+		You may click <a href={% url "request-tool" object.id %}>here</a> to request this tool. When a tool is next available, you will be contacted to arrange pick-up within 48 hours (or lose your spot in line).
+		
+	<br><br>
+	{% endif %}
+
+
+	<table id="gridtable">
+		<thead>
+			<tr>
+				<th>Tool</th>
+				<th>Label</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for tool in object.equipment_set.branch_set %}
+				<tr>
+					<td>
+						{{ tool.commodity.name }}
+					</td>
+					<td>
+						{{ tool.label }}
+					</td>
+					<td>
+						{{ tool.status }}
+						{% if user.is_staff %}
+							{% if not tool.loan %}
+								[<a href="">Check Out</a>]
+							{% else %}
+								[<a href="">Check In</a>]
+							{% endif %}
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+			{% if object.equipment_set.branch_set.count == 0 %}
+				<tr>
+					<td colspan=3>
+						<i>Sorry, the branch does not yet own this tool&mdash;please join the waiting list to flag your interest. You may also have better luck finding this tool from a peer below.</i>
+					</td>
+				</tr>	
+			{% endif %}
+		</tbody>
+	</table>
+
+	{% if object.loan_set.count > 0 %}	
+		<h4>Waiting List</h4>
+		<ul>
+		{% for loan in object.loan_set.all %}
+		{% autoescape off %}
+			<li>{{ loan.borrower.username_link }} (requested {{ loan.date_requested }})
+			{% if loan.borrower == user %}
+				[<a href={% url "cancel-request-tool" object.id loan.id %}>Cancel Request</a>]
+			{% endif %}
+		{% endautoescape %}
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+	<br>
+
+	<h3>Peer-to-Peer Inventory</h2>
+	The tools below are being shared with the community by some very cool brewers. You must contact them directly to arrange for borrowing the tool.
+	
+	<br><br>
+	
+	<table id="gridtable">
+		<thead>
+			<tr>
+				<th>Tool</th>
+				<th>Label</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for tool in object.equipment_set.p2p_set %}
+				<tr>
+					<td class="p2p_{{ tool.p2p_is_checked_out }}">
+						{{ tool.commodity.name }}
+					</td>
+					<td class="p2p_{{ tool.p2p_is_checked_out }}">
+						{{ tool.label }}
+					</td>
+					<td class="p2p_{{ tool.p2p_is_checked_out }}">
+						<a href={% url "brewer-equipment" tool.contributor.id %}>{{ tool.status }}</a>
+					</td>
+				</tr>
+			{% endfor %}
+			{% if object.equipment_set.p2p_set.count == 0 %}
+				<tr>
+					<td colspan=3>
+						<i>Sorry, this tool is not available for borrowing from any peers.</i>
+					</td>
+				</tr>	
+			{% endif %}
+		</tbody>
+	</table>
+{% endblock content %}

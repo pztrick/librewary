@@ -1,0 +1,112 @@
+{% load core_tags %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html">
+	<meta name="author" content="Patrick Paul">
+	<meta name="title" content="Librewary.com">
+	<meta name="description" content="Online resource for peer-to-peer and branch borrowing of homebrewing tools."
+	<meta name="robots" content="nofollow">
+	
+	<title>{% block title %}
+	Librewary {{ request.is_good_browser }}
+	{% endblock title %}</title>
+
+	<link href="{{ STATIC_URL }}layout.css" rel="stylesheet" media="screen, print, projection">
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<h1>www.librewary.com</h1>
+	</div>
+	<div id="nav">
+		<span style="float:right;">
+			<i>A project of <a href="{% url "twinpints" %}">Twin Pints Cooperative</a></i>
+		</span>
+		<ul>			
+			{% block navigation %}	
+			<li><a href="{% url "home" %}">Home</a>
+			<li><a href="{% url "about" %}">About</a>
+			<li><a href="{% url "faqs" %}">FAQs</a>
+			<li><a href="{% url "documentation" %}">Documentation</a>
+			<li><a href="{% url "contact" %}">Contact</a>
+			{% endblock navigation %}
+		</ul>
+	</div>
+	<div id="main">
+		<div id="content">
+			<h2>{% block heading %}
+				[Page Not Found]
+			{% endblock heading %}
+			</h2>
+			<p>
+			{% block content %}
+				
+			{% endblock content %}
+			</p>
+		</div>
+		<div id="rightbar">
+			{% block about %}
+				<h2>About</h2>
+				<p>
+					<b>Librewary</b> is a resource for borrowing homebrewing tools in <i>your</i> neighborhood.
+				</p>
+			{% endblock about %}
+			{% block session %}
+				<h2>Session</h2>
+				<ul>
+				{% if user.is_authenticated %}
+					<li>Logged in as: <a href="{% url "brewer-profile" user.id %}">{{ user.full_name|default:user.username }}</a>
+					<li><a href="{% url "brewer-equipment" user.id %}">My Equipment</a>
+					<li><a href="{% url "logout" %}?next={% settings_value "LOGOUT_REDIRECT_URL" %}">Logout</a>
+				{% else %}
+					<li>You are not logged in.
+					{% comment %}
+					<li><a href="{% url "login" %}?next={% settings_value "LOGIN_REDIRECT_URL" %}">Login</a>
+					<li><a href="{% url "register" %}">Register</a>
+					{% endcomment %}
+					 <li><a href="{% url "facebook-login" %}?next={% settings_value "LOGIN_REDIRECT_URL" %}">Login via Facebook</a>
+				{% endif %}
+				</ul>
+			{% endblock session %}
+
+			{% block menu %}
+				<h2>Actions</h2>
+				<ul>		
+					<li><a href="{% url "browse" %}">Browse Librewary</a>
+					<li><a href="{% url "brewers" %}">Browse Brewers</a>
+					{% if user.is_superuser %}
+					<li><a href="/"></a>Browse Requests</a>
+					<li><a href="/"></a>Browse Rentals</a>
+					{% endif %}
+				</ul>			
+				{% if user.is_staff %}
+					<h2>Staff</h2>
+					<ul>
+						<li><a href="/"></a>Enter Cash Deposit</a>
+						<li><a href="/"></a>Chart of Accounts</a>
+						<li><a href="/"></a>Deposit Cash To Bank</a>
+						<li><a href="/"></a>Deposit Checks To Bank</a>
+						<li><a href="/"></a>Adjusting Journal Entry</a>
+					{% if user.is_superuser %}
+						<li><a href="/admin">Administer Site</a>
+					{% endif %}
+					</ul>						
+				{% endif %}
+			{% endblock menu %}
+
+		</div>
+	</div>
+	<div id="footer">
+		{% block footer %}
+			Librewary &copy; 2013 <a href=http://www.pztrick.com target=_blank>Patrick Paul</a>
+			&mdash;
+			<a href={% url "copyright" %}>Information &amp; Copyright</a>
+			&mdash;
+			<a href={% url "login" %}>Staff Access</a>
+
+		{% endblock footer %}
+	</div>
+</div>
+</body>
+</html>

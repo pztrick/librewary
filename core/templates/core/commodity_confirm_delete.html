@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Commodity: Delete {{ object.name }}?
+{% endblock heading %}
+
+{% block content %}
+	{% if error_message %}
+		<strong>{{ error_message }}</strong>
+	{% endif %}
+	<form action="." method="POST">
+	<table>
+	{{ form }}
+	{% csrf_token %}
+	<tr><td/><td><input type="submit" value="Delete"></td></tr>
+	</table>
+{% endblock content %}

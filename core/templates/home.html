@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Welcome to Librewary
+{% endblock heading %}
+
+{% block content %}
+	Librewary is currently under development. More information is available on the 
+	<a href="{% url "about" %}">About</a>
+	page.
+
+	<h3>Twin Pints Cooperative</h3>
+
+	Support <a href="{% url "twinpints" %}">Twin Pints Cooperative</a> by becoming a member today!
+
+	<br><br>
+
+	Please <a href="{% url "contact" %}">contact us</a> for more details.
+ 	
+
+{% endblock content %}

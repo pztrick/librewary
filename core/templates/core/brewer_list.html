@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Brewers
+{% endblock heading %}
+
+{% block content %}
+	<table id=gridtable>
+		<thead>
+			<tr>
+				<th width=30%>Brewer</th>
+				<th width=10%>Age</th>
+				<th width=20%># Equipment</th>
+				{% if user.is_staff %}
+					<th width=40%>Staff Actions</th>
+				{% endif %}
+			</tr>
+		</thead>
+		<tbody >
+
+			{% for object in object_list %}
+
+			<tr>
+				<td>{{ object.username_link|safe }}
+				</td>
+				<td>{{ object.age|default:"&mdash;" }}
+				</td>
+				<td><a href="{% url "brewer-equipment" object.id %}">{{ object.equipment_count }} tools</a>
+				</td>
+				{% if user.is_staff %}
+				<td>
+					<i>Activate Membership</i>
+				</td>
+				{% endif %}
+			</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+	
+{% endblock content %}

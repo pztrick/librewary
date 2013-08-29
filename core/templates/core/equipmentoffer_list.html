@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Pending Contributions
+{% endblock heading %}
+
+{% block content %}
+	{% if object_list %}
+	<ul>
+	{% for object in object_list %}
+		<li><a href="{% url "offer-detail" object.id %}">{{ object.tool }}</a>
+			<small>[offered by  {{ object.owner }}]</small>
+	{% endfor %}
+	</ul>
+	{% else %}
+		There are no pending tool contributions.		
+	{% endif %}
+	{% if user.is_authenticated %}		
+		<div id="ulinline">
+			<ul><strong>Actions:</strong>
+				<li>Contribute Your Tool
+				<li><a href="{% url "browse-offers" %}">Browse Pending Contributions</a>
+			</ul>
+		</div>
+	{% endif %}
+{% endblock content %}

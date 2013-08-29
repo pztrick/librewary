@@ -1,0 +1,59 @@
+{% load core_tags %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html">
+	<meta name="author" content="Patrick Paul">
+	<meta name="robots" content="nofollow" >
+	
+	<title>{% block title %}
+	Librewary {{ request.is_good_browser }}
+	{% endblock title %}</title>
+
+	<link href="{{ STATIC_URL }}layout.css" rel="stylesheet" media="screen, print, projection">
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<h1>www.librewary.com</h1>
+	</div>
+	<div id="nav">
+		<span style="float:right;">
+			<i>A project of <a href="{% url "twinpints" %}">Twin Pints Cooperative</a></i>
+		</span>
+		<ul>			
+			{% block navigation %}	
+			<li><a href="{% url "home" %}">Home</a>
+			<li><a href="{% url "about" %}">About</a>
+			<li><a href="{% url "faqs" %}">FAQs</a>
+			<li><a href="{% url "documentation" %}">Documentation</a>
+			<li><a href="{% url "contact" %}">Contact</a>
+			{% endblock navigation %}
+		</ul>
+	</div>
+	<div id="main">
+		<div id="content" style="width:auto;">
+			<h2>{% block heading %}
+				Microsoft Internet Explorer Detected
+			{% endblock heading %}
+			</h2>
+			<p>
+			{% block content %}
+				This page does not render properly on Microsoft Internet Explorer. We recommend accessing this page with <a href="http://www.getfirefox.com">Firefox</a> or <a href="http://www.google.com/chrome">Google Chrome</a>web browsers.
+			{% endblock content %}
+			</p>
+		</div>
+	</div>
+	<div id="footer">
+		{% block footer %}
+			Librewary &copy; 2013 <a href=http://www.pztrick.com target=_blank>Patrick Paul</a>
+			&mdash;
+			<a href={% url "copyright" %}>Information &amp; Copyright</a>
+			&mdash;
+			<a href={% url "login" %}>Staff Access</a>
+
+		{% endblock footer %}
+	</div>
+</div>
+</body>
+</html>

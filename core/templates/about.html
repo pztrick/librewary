@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	About Librewary
+{% endblock heading %}
+
+{% block content %}
+	Librewary is a resource for borrowing homebrewing tools.
+
+	<h3>Method #1: Peer-to-Peer Borrowing <i>(Free!)</i></h3> 
+	Brewers can inventory their own personal equipment here on Librewary, and optionally <i>check in</i> their equipment for peer-to-peer lending. Shared equipment will appear when browsing the Librewary, and new users can contact the owners of any available equipment to arrange for borrowing it.
+
+	<br><br>
+
+	This is the <i>distributed</i> or <i>peer-to-peer</i> borrowing method.
+	
+	<h3>Method #2: Library Branch Borrowing <i><a href="{% url "twinpints" %}">($30)</a></i></h3>
+	Brewers or nanobreweries contribute their own private equipment to the Librewary branches. These are central locations where equipment is stored, lended, and returned-to similarly to a conventional book-lending library.
+
+	<br><br>
+
+	You can conveniently check out tools in advance via calendaring to ensure you have everything you need for your next batch, whereas peer-to-peer borrowing may be unreliable.
+
+	<br><br>
+
+	<a href="{% url "faqs" %}#tiers">Upper tier</a> equipment will also be located at branches, for an additional deposit.
+ 	
+
+{% endblock content %}

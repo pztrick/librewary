@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block heading %}
+Login to Librewary
+{% endblock heading %}
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% else %}
+<p>Please enter your login details below, or click <a href="{% url "facebook-login" %}?next={{ next }}">here</a> to login with Facebook.
+{% endif %}
+
+<form method="post" action="{% url "login" %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+<tr>
+	<td/>
+	<td><input type="submit" value="login" /></td>
+</table>
+
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% endblock %}

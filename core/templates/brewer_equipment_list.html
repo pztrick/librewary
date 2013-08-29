@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	{{ brewer }}'s Equipment
+{% endblock heading %}
+
+{% block content %}
+	{% if object_list %}
+	<table id=gridtable>
+		<thead>
+			<tr>
+				<th width=35%>Tool</th>
+				<th width=26%>Label</th>
+				<th width=16%>Status</th>
+				{% if brewer == user %}
+					<th width=36%>Actions</th>
+				{% endif %}
+			</tr>
+		</thead>
+		<tbody >
+			{% for object in object_list %}
+				<tr>
+				<td class="p2p_{{ object.p2p_is_checked_out }}">{{ object.commodity.name }}</td>
+				<td class="p2p_{{ object.p2p_is_checked_out }}">{{ object.label }}</td>
+				<td class="p2p_{{ object.p2p_is_checked_out }}">{{ object.status }}</td>
+				{% if object.contributor == user %}
+				<td class="p2p_{{ object.p2p_is_checked_out }}">
+					{% if not object.contributed %}	
+						<a href="{% url "equipment-toggle-in-out" object.id %}">
+						{% if not object.p2p_is_checked_out %}
+							Check Out P2P
+						{% else %}
+							Check In P2P
+						{% endif %}
+						</a>
+
+						<br>
+
+						<i>Remove</i>
+					{% else %}
+						<i>Managed by Branch</i>
+					{% endif %}
+				</td>					
+				{% endif %}
+			</tr>
+			</div>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+		This user has no tools.
+	{% endif %}			
+		{% if user == brewer %}	
+		<div id="ulinline">
+			<ul><strong>My Equipment:</strong>
+				<li><a href ="{% url "brewer-equipment-add" %}">Add New Tool</a>
+			</ul>
+		</div>
+		{% endif %}
+		<div id="ulinline">
+		{% if user.is_authenticated %}	
+			<ul><strong>Actions:</strong>
+				<li>{{ brewer.profile_link|safe }}
+				<li>{{ brewer.facebook_link|safe }}
+				<li>{{ brewer.email_link|safe }}
+			</ul>
+		{% else %}
+			<ul><strong>You must be logged in before you can contact this brewer.</strong></ul>
+		{% endif %}
+		</div>
+{% endblock content %}

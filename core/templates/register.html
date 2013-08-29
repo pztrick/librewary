@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Librewary Registration
+{% endblock heading %}
+
+{% block content %}
+	{% if error_message %}
+		<strong>{{ error_message }}</strong>
+	{% endif %}
+	<form action="." method="POST">
+	<table>
+	{{ form }}
+	{% csrf_token %}
+	<tr><td/><td><input type="submit" value="Register"></td></tr>
+	</table>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Browse Librewary &raquo; {{ object.name }}
+{% endblock heading %}
+
+{% block content %}
+		<ul>
+			<li>Owner: {{ object.contributor }}
+		</ul>
+	{% if user.is_staff %}
+		<div id="ulinline">
+			<ul><strong>Staff:</strong>
+				<li><a href="{% url "accept-offer" object.id %}">Add To Librewary</a>
+				<li><a href="{% url "delete-offer" object.id %}">Delete</a>
+			</ul>
+		</div>
+	{% endif %}
+{% endblock content %}

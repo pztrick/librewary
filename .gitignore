@@ -1,0 +1,20 @@
+# deployment specifics
+settings.py
+media/
+/static/
+manage.py
+wsgi.py
+db.sqlite3
+
+# cache files
+*~
+
+# python junk
+*.pyo
+*.pyc
+
+# ide files
+.ropeproject
+*.sublime-workspace
+*.sublime-project
+.env

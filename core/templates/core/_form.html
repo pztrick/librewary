@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	 {{ extra_title }}
+{% endblock heading %}
+
+{% block content %}
+	{% if error_message %}
+		<strong>{{ error_message }}</strong>
+	{% endif %}
+	<form method="POST">
+	<table>
+	{{ form }}
+	{% csrf_token %}
+	<tr><td/><td><input type="submit" value="{{ extra_title }}"></td></tr>
+	</table>
+	<br>
+	<small>Note: This is a generic form template. If it is not descriptive enough, it can be further customized.</small>
+{% endblock content %}

@@ -1,0 +1,39 @@
+<VirtualHost *:80>
+	ServerName www.librewary.com
+	ServerAlias librewary.com
+	ServerAdmin admin@pztrick.com
+
+        DocumentRoot /var/www/librewary.com/public
+        <Directory /var/www/librewary.com/public>
+               Options FollowSymLinks
+               AllowOverride None
+               Order allow,deny
+               allow from all
+        </Directory>
+
+	Alias /static/ /var/www/librewary.com/public/static/
+	<Directory /var/www/librewary.com/public/static>
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	Alias /media/ /var/www/librewary.com/public/media/
+	<Directory /var/www/librewary.com/public/media>
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	# The following installs the Django WSGI app
+	WSGIDaemonProcess www.librewary.com processes=2 threads=15 display-name=%{GROUP}
+	WSGIProcessGroup www.librewary.com
+	WSGIScriptAlias / /var/www/librewary.com/public/wsgi.py
+
+	ErrorLog /var/www/librewary.com/error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog /var/www/librewary.com/access.log combined
+
+</VirtualHost>

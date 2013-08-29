@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	 Adding Tool: {{ offer.tool }}
+{% endblock heading %}
+
+{% block content %}
+		<ul>
+			<li>Owner: {{ offer.owner }}
+			<li>Tool: {{ offer.tool }}
+			<li>Estimated value: {{ offer.value }}
+			<li>Description: {{ offer.description }}
+		</ul>
+	This contribution will be added to the Librewary as a new tool.
+	Here is what happens next:
+	<small>
+		<ul>
+			<li>A new Tool will be added to the Librewary
+			<li>An amount equal to the Tool's commodity value will be added to the Brewer's deposit balance
+			<li>The Pending Contribution will be deleted from the system
+			<li>The Contributor will be linked to the Tool should it need to be returned
+		</ul>
+	</small>
+	{% if error_message %}
+		<strong>{{ error_message }}</strong>
+	{% endif %}
+	<form action="." method="POST">
+	<table>
+	{{ form }}
+	{% csrf_token %}
+	<tr><td/><td><input type="submit" value="Add Tool to Librewary"></td></tr>
+	</table>
+{% endblock content %}

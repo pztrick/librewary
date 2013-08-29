@@ -1,0 +1,190 @@
+body,
+html {
+	margin:0;
+	padding:0;
+	color:#000;
+	background-image: url('/static/debut_dark.png'); /* http://subtlepatterns.com/debut-dark/ (CC BY-SA 3.0) */
+	font-family: arial;
+}
+
+a:link {
+	color:#BF5B30;
+}
+
+a:visited {
+	color:#BF5B30;
+}
+
+a:hover {
+	color:#FFC973;
+}
+
+a:active {
+	color:#BF5B30;
+}
+
+#wrapper {
+	margin: 20px auto;
+	width:780px;
+}
+
+#header {
+	padding:5px 10px;
+	background:#4282D3;
+}
+
+#header a {
+	color:#ffff00;
+}
+
+h1 {
+    margin:0 0 0 0;
+}
+
+h2 {
+	margin:0 0 0 0;
+}
+
+h3 {
+	margin:25px 0 10px 0;
+}
+
+#nav {
+	padding:5px 10px;
+	background:#05326D;
+	color: #BF8830;
+}
+
+#nav ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#nav li {
+	display:inline;
+	margin:0;
+	padding:3px;
+}
+
+#ulinline {	
+	margin: 10px 0 0 -30px;
+	padding-left: 0px;
+}
+
+#ulinline ul {
+	margin:0;
+	list-style:none;
+}
+
+#ulinline li {
+	display:inline;
+	margin:0;
+	padding:3px;
+}
+
+#content ul, li {
+	margin:0;
+}
+
+#main {
+	height:615px;
+	width: 100%;
+	margin:0 auto;
+	padding:0;
+}
+
+#main a:link {
+	color:#0E51A7;
+}
+
+#main a:visited {
+	color:#0E51A7;
+}
+
+#main a:hover {
+	color:#6997D3;
+}
+
+#main a:active {
+	color:#0E51A7;
+}
+
+#content {
+	float: left;
+	width: 60%;
+	padding: 2%;
+	height: 96%;
+	margin:0 auto;
+	background:#FFB640;
+	overflow: auto;
+}
+
+#content .helptext {
+	white-space:nowrap;
+	float:left;
+	font-size: 0.7em;
+}
+
+#content #id_description {
+	/* for Textarea widgets for attributes named description */
+	width: 300px;
+	height: 100px;
+}
+
+tr {
+	text-align:left;
+	font-size: 0.8em;
+}
+
+#rightbar {
+	float: right;
+	width: 32%;
+	padding: 2%;
+	height: 96%;
+	margin:0 auto;
+	background:#5FD2B5;
+	overflow: auto;
+}
+
+#rightbar p {
+	padding-left:15px;
+	padding-right:15px;
+}
+#rightbar ul{	
+	padding-left:25px;
+}
+#rightbar li{
+	padding:0px;
+}
+
+#footer {
+	margin: 0 auto;
+	padding: 0px 0 0px 0;
+	background:#05326D;
+	text-align: center;
+	line-height: 2em;
+	font-size: 0.95em;
+	color: #BF8830;
+}
+
+#gridtable {
+	width: 100%;
+	border:1px solid black;
+	border-collapse: collapse;
+}
+
+#gridtable th {
+	border:1px solid black;
+	background-color: #c3d3c3;
+	vertical-align: top;
+}
+
+#gridtable td {
+	border:1px solid black;
+	background-color: #fff380;
+}
+
+#gridtable td.p2p_True {
+	background-color: #ff9966;
+}

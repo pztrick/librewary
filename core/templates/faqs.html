@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Frequently Asked Questions
+{% endblock heading %}
+
+{% block content %}
+	
+	Please <a href="{% url "contact" %}">contact us</a> with any questions.
+
+	{% comment %}
+
+	<h3><a name="philosophy"></a>Why does a homebrew library make sense?</h3>
+
+	Many homebrewing tools gather dust in between brew-days (excepting fermenting vessels), and it is the founders' wish that this equipment be made available to newbies and wannabe-brewers to further the hobby and with it the uptake of craft beer consumption in our community.
+
+	<br><br>
+
+	Further, higher-tier <i>probrewing</i> equipment is often prohibitively costly for one individual to own; the Librewary provides an opportunity for homebrewers to use better equipment at lesser cost. As more higher-tier equipment is made available to the Librewary, experienced homebrewers will substitute their smaller lower-tier batches for the new equipment, making even more equipment available to prospective newbie brewers.
+
+	<h3><a name="csb"></a>What is Community-supported Brewing?</h3>
+
+	Community-supported brewing <a href="http://en.wikipedia.org/wiki/Community_Supported_Brewery" target="_blank">(Wikipedia #)</a> is a socio-economic model of beer brewing where the community's beer consumers share in the risk of beer manufacture. This is similar to a conventional CSA <i>(community supported agriculture)</i> vegetable box scheme whereby local consumers <i>pre-pay</i> before a harvest and receive a weekly box of produce during the season; they take on the risk of drought or other weather concerns that could adversely impact the harvest.
+
+	<br><br>
+
+	Similarly, members of <a href="{% url "twinpints" %}">Twin Pints Cooperative</a> incur some risk when paying their annual subscription fee of $30. Those that participate in the $100 Growler Club have a much more analogous experience to those in the vegetable box scheme when they kick in $100 for a year of monthly growlers of artisan beer; they run the risk that their $100 may only buy them unsavory beers made by neophyte brewers. However, this risk will pay dividends to the community later on as artisan brewers mature to manufacture new, inventive, <i>kick-ass</i> beers.
+
+	<br><br>Finally, as a cooperative business model, members of the community are also member-owners of the cooperative and may also receive a <a href="#patronage">patronage dividend</a> in years of profitability for the co-op.
+
+	<h3><a name="tiers"></a>What are Lower &amp; Upper Tiers?</h3>
+
+	<i>Tiers</i> refer to two different classes of brewing equipment available from the branch.
+
+	<br><br>
+
+	<i>Lower tier</i> equipment is basic brewing equipment typically used in 5-gallon extract or partial-extract brewing. This is available at no additional charge after your <a href="{% url "twinpints" %}">$30 joining fee</a>.
+
+	<br><br>
+
+	<i>Upper tier</i> equipment is more advanced brewing equipment which would be more costly to replace. This equipment is available after depositing $100 with the <a href="{% url "twinpints" %}">co-op</a> <i>(in cash or contributed equipment)</i>.
+
+	<br><br>
+
+	The deposit is important to ensure that costlier equipment is responsibly used and returned. It also provides an incentive for more advanced brewers to contribute their retired equipment to the co-op library so that others can continue to benefit from the tools.
+
+	<h3><a name="patronage">What is a patronage dividend?</a></h3>
+
+	<i>Cooperatives</i> [<a href="http://www.community-wealth.org/strategies/panel/coops/index.html" target="_blank">#</a>] are a unique business model predicated on community wealth rather than private wealth. The net earnings of the cooperative are frequently returned to the users of the cooperative as <i>patronage dividends</i> or re-invested to expand the services and territory of the cooperative.
+
+	<br><br>
+
+	Some excellent examples of the cooperative model include credit unions, insurance mutuals, <a href="http://www.msu.coop" target="_blank">MSU Student Housing Cooperative</a>, <a href="http://www.icc.coop" target="_blank">Ann Arbor Inter-Cooperative Council</a>, and <a href="http://evergreencooperatives.com/" target="_blank">Evergreen Cooperatives</a> of Cleveland, Ohio.
+
+	<br><br>
+
+	<a href="{% url "twinpints" %}">Twin Pints Cooperative</a> expects to award patronage dividends to its CSB members, artisan brewers, and workers, beginning after any initial project financing obligations are repaid. We anticipate at least a $5 annual dividend per CSB member, $50 dividend per artisan brewer, and $2,000 dividend per 40-hourly worker.
+	
+	{% endcomment %}
+
+{% endblock content %}

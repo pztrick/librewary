@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Pending Contribution: {{ object.tool }}
+{% endblock heading %}
+
+{% block content %}
+		<ul>
+			<li>Owner: {{ object.owner }}
+			<li>Tool: {{ object.tool }}
+			<li>Estimated value: {{ object.value }}
+			<li>Description: {{ object.description }}
+		</ul>
+	{% if user.is_staff %}
+		<div id="ulinline">
+			<ul><strong>Staff:</strong>
+				<li><a href="{% url "accept-offer" object.id %}">Add To Librewary</a>
+				<li><a href="{% url "delete-offer" object.id %}">Delete</a>
+			</ul>
+		</div>
+	{% endif %}
+{% endblock content %}

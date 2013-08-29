@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Documentation
+{% endblock heading %}
+
+{% block content %}
+	This page tracks the development of the Librewary app. <i>(So, uh, not really documentation, yet :)</i>
+
+	<h3>Implemented Features</h3>
+	<ul>
+		<li>Facebook authentication
+		<li>Equipment inventories (P2P tools)
+		<li>Staff user role
+		<li>Adding branch tools <i>(staff)</i>
+		<li>Branch tool waiting lists
+		<li>Brewer roster
+	</ul>
+
+	<h3>Forthcoming Features</h3>
+	<ul>
+		<li>Calendaring branch equipment check-out
+		<li><a href="http://www.untappd.com" target="_blank">Untappd</a> account association
+		<li><a href="http://www.untappd.com" target="_blank">Untappd</a> homebrew publishing
+		<li>Remove equipment action
+		<li>Delete account action (user &amp; staff)
+		<li>Bookkeeping tasks (e.g. joining fees, deposits)
+	</ul>
+
+	<br><br>
+
+	If there are any other features you want, contact <a href="{% url "brewer-profile" 3 %}">me</a>.
+{% endblock content %}

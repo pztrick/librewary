@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block heading %}
+	Browse Librewary
+{% endblock heading %}
+
+{% block content %}
+	{% if not object_list %}
+		There are currently no tools in the Librewary.
+	{% else %}
+	<table id="gridtable">
+		<thead>
+			<tr>
+				<th>Tool</th>
+				<th>Branch<br>Availability</th>
+				<th>Branch<br>Waiting List</th>
+				<th>Peer-to-Peer<br>Availability</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for object in object_list %}
+			<tr>
+				<td>
+					<a href="{% url "browse-detail" object.id %}">{{ object.name }}</a>
+				</td>
+				<td>
+					{{ object.quantity_available }} of {{ object.quantity_owned }}
+				</td>
+				<td>
+					{{ object.quantity_waiting_list }}
+				</td>
+				<td>
+					{{ object.quantity_p2p_available }} of {{ object.quantity_p2p_total }}
+				</td>
+		{% endfor %}
+		</tbody>
+	</table>
+	{% comment %}
+	<small><i><br>* A tool may report both an available quantity and a waiting list in the intermediate period between the time a tool has been checked in and before the next person on the waiting list has retrieved the tool.</i></small>		
+	{% endcomment %}
+	{% endif %}
+	{% if user.is_authenticated %}		
+		<div id="ulinline">
+			<ul><strong>Actions:</strong>
+				<li><a href="{% url "contact" %}">Suggest New Tool</a>
+				{% comment %}
+				<li><a href="{% url "contribute-tool" %}">Contribute Your Tool</a>
+				<li><a href="{% url "browse-offers" %}">Browse Pending Contributions</a>
+				{% endcomment %}
+			</ul>
+		</div>
+	{% endif %}
+	{% if user.is_staff %}
+		<div id="ulinline">
+			<ul><strong>Staff:</strong>
+					<li><a href="{% url "commodity_create" %}">Add Tool Commmodity</a>
+					<li><a href="{% url "add-branch-tool" %}">Add Branch Tool</a>
+			</ul>
+		</div>
+	{% endif %}
+{% endblock content %}

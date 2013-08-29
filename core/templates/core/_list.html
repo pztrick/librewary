@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block heading %}
+
+	{{ extra_title }}
+
+{% endblock heading %}
+
+
+{% block content %}
+
+	<ul>
+
+	{% for object in object_list %}
+
+		<li>{{ object.name }}</a>
+
+	{% endfor %}
+
+	</ul>
+
+	<br>
+
+	<small>Note: This is a generic template. If this page is not descriptive enough please contact the admin.</small>
+
+{% endblock content %}
